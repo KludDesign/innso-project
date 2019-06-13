@@ -9,27 +9,37 @@
     >
       <v-card>
         <v-card-title>
-          <v-select
-            :items="status"
-            label="Status"
-            v-model="statusType"
-          ></v-select>
+          <v-flex xs2>
+            <v-select
+              :items="status"
+              label="Status"
+              v-model="statusType"
+              solo
+            ></v-select>
+          </v-flex>
 
-          <v-select
-            :items="contact_channel"
-            label="Réseau"
-            v-model="statusType"
-          ></v-select>
-        </v-card-title>
+          <v-flex xs2>
+            <v-select
+              :items="contact_channel"
+              label="Réseau"
+              v-model="statusType"
+              solo
+            ></v-select>
+          </v-flex>
 
-        <v-card-title>
-          <v-text-field
-            v-model="search"
-            append-icon="search"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
+          <v-spacer></v-spacer>
+
+          <v-flex xs3>
+            <v-card-title>
+              <v-text-field
+                v-model="search"
+                append-icon="search"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-card-title>
+          </v-flex>
         </v-card-title>
 
         <v-data-table
@@ -49,7 +59,8 @@
             <td class="text-xs-left">{{ props.item.customer.email }}</td>
             <td class="text-xs-left">{{ props.item.customer.phone }}</td>
             <td class="text-xs-left">{{ props.item.contact_channel }}</td>
-            <td class="text-xs-left">{{ props.item.status }}</td>
+            <td :class="props.item.status" class="text-xs-left">{{ props.item.status }}</td>
+            <td class="text-xs-left">{{ props.item.interaction_creation_date | dateFilter }}</td>
             <td class="text-xs-left">{{ props.item.last_comment }}</td>
           </template>
 
@@ -68,7 +79,14 @@
 <script>
 export default {
 
-  props: ['search', 'statusType', 'status', 'contact_channel', 'headers', 'apiData'],
+  props: ['search', 'statusType', 'headers', 'apiData'],
+
+  data () {
+    return {
+      status: ['finished', 'inProgress', 'reserved', 'toTreat', 'waiting'],
+      contact_channel: ['facebook', 'file', 'form', 'messenger', 'twiter']
+    }
+  },
 
   computed: {
     filteredItems() {
@@ -76,7 +94,29 @@ export default {
         return !this.statusType || i.status === this.statusType || i.contact_channel === this.statusType;
       })
     }
-  },
-
+  }
 }
 </script>
+
+<style>
+  .finished {
+    background-color: #82A684;
+  }
+
+  .inProgress {
+    background-color: #FCA62D;
+  }
+
+  .reserved {
+    background-color: #A4BDE3;
+  }
+
+  .toTreat {
+
+  }
+
+  .waiting {
+    background-color: #47464A;
+    color: #fff;
+  }
+</style>

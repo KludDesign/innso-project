@@ -11,8 +11,6 @@
     <Table
       :search="search"
       :statusType="statusType"
-      :status="status"
-      :contact_channel="contact_channel"
       :headers="headers"
       :apiData="mockData"
     />
@@ -48,37 +46,33 @@ export default {
     return {
       search: '',
       statusType: null,
-      status: ['finished', 'inProgress', 'reserved', 'toTreat', 'waiting'],
-      contact_channel: ['facebook', 'file', 'form', 'messenger', 'twiter'],
       headers: [
         {
-          id: 0,
           text: 'Nom',
           align: 'left',
           value: 'customer.last_name'
         },
         {
-          id: 1,
           text: 'Email',
           value: 'customer.email'
         },
         {
-          id: 2,
           text: 'Téléphone',
           value: 'customer.phone'
         },
         {
-          id: 3,
           text: 'Réseau',
           value: 'contact_channel'
         },
         {
-          id: 4,
           text: 'Status',
           value: 'status'
         },
         {
-          id: 5,
+          text: 'Date de création',
+          value: 'interaction_creation_date'
+        },
+        {
           text: 'Commentaire',
           value: 'last_comment',
           sortable: false

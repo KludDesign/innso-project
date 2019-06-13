@@ -54,11 +54,6 @@ export default {
           icon: 'apps',
           title: 'Index',
           to: '/'
-        },
-        {
-          icon: 'apps',
-          title: 'Test',
-          to: '/test'
         }
       ],
       miniVariant: false,
