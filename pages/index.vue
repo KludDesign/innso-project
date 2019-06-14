@@ -9,10 +9,11 @@
     >
 
     <Table
-      :search="search"
       :statusType="statusType"
       :headers="headers"
       :apiData="mockData"
+      :filter1="status"
+      :filter2="contact_channel"
     />
 
     </v-flex>
@@ -22,7 +23,7 @@
 <script>
 import Table from '~/components/Table.vue';
 import axios from 'axios';
-import draggable from 'vuedraggable'
+import draggable from 'vuedraggable';
 
 export default {
   components: {
@@ -44,8 +45,9 @@ export default {
 
   data () {
     return {
-      search: '',
       statusType: null,
+      status: ['finished', 'inProgress', 'reserved', 'toTreat', 'waiting'],
+      contact_channel: ['facebook', 'file', 'form', 'messenger', 'twiter'],
       headers: [
         {
           text: 'Nom',

@@ -11,7 +11,7 @@
         <v-card-title>
           <v-flex xs2>
             <v-select
-              :items="status"
+              :items="filter1"
               label="Status"
               v-model="statusType"
               solo
@@ -20,7 +20,7 @@
 
           <v-flex xs2>
             <v-select
-              :items="contact_channel"
+              :items="filter2"
               label="Réseau"
               v-model="statusType"
               solo
@@ -79,12 +79,11 @@
 <script>
 export default {
 
-  props: ['search', 'statusType', 'headers', 'apiData'],
+  props: ['statusType', 'headers', 'apiData', 'filter1', 'filter2'],
 
   data () {
     return {
-      status: ['finished', 'inProgress', 'reserved', 'toTreat', 'waiting'],
-      contact_channel: ['facebook', 'file', 'form', 'messenger', 'twiter']
+      search: ''
     }
   },
 
